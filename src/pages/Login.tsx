@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { enviarEmail } from '../redux/actions';
+import { Dispatch, fetchCurrencies, enviarEmail } from '../redux/actions';
 
 const INITIAL_STATE = {
   email: '',
@@ -13,7 +13,7 @@ const INITIAL_STATE = {
 function Login() {
   const [data, setData] = useState(INITIAL_STATE);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch: Dispatch = useDispatch();
 
   const isEmailValid = (email: string) => email.includes('@') && email.includes('.com');
   const isPasswordValid = (password: string) => password.length >= 6;
@@ -39,6 +39,7 @@ function Login() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     dispatch(enviarEmail(data.email, data.password));
+    dispatch(fetchCurrencies());
     navigate('/carteira');
   };
 
