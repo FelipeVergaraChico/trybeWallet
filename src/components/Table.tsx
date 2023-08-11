@@ -1,13 +1,8 @@
 import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
 import { RootState } from '../type';
 
 function Table() {
   const rootStateExpenses = useSelector((state: RootState) => state.wallet.expenses);
-
-  useEffect(() => {
-
-  }, []);
 
   return (
     <table>

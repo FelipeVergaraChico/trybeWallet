@@ -14,10 +14,10 @@ const requestStarted = () => ({
   type: 'REQUEST_STARTED',
 });
 
-export function requestSuccess(data: string[]) {
+export function requestSuccess(currencies: string[]) {
   return {
     type: 'REQUEST_SUCCESSFUL',
-    payload: data,
+    payload: currencies,
   };
 }
 
@@ -51,5 +51,12 @@ export function sendExpense(expense: ExpenseType) {
     } catch (error: any) {
       console.log(error);
     }
+  };
+}
+
+export function removeExpense(id: number) {
+  return {
+    type: 'REMOVE_EXPENSE',
+    payload: id,
   };
 }

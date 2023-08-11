@@ -1,6 +1,6 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import React, { useState } from 'react';
-import { ExpenseType } from '../type';
+import { ExpenseType, RootState } from '../type';
 import { Dispatch, sendExpense } from '../redux/actions';
 
 const INITIAL_STATE = {
@@ -14,6 +14,12 @@ const INITIAL_STATE = {
 };
 
 function WalletForm() {
+  const ids = useSelector((state: RootState) => {
+    const expense = state.wallet.expenses;
+    return (
+      (expense.slice(-1)[0] ?? { id: -1 }).id + 1
+    );
+  });
   const [formData, setFormData] = useState<ExpenseType>(INITIAL_STATE);
   const dispatch: Dispatch = useDispatch();
 
@@ -29,7 +35,7 @@ function WalletForm() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(sendExpense(formData));
+    dispatch(sendExpense({ ...formData, id: ids }));
     setFormData(INITIAL_STATE);
   };
 
