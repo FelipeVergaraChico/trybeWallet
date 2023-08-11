@@ -1,7 +1,7 @@
-import { useDispatch, useSelector } from 'react-redux';
-import React, { useEffect, useState } from 'react';
-import { ExpenseType, RootState } from '../type';
-import { Dispatch, fetchCurrencies, sendExpense } from '../redux/actions';
+import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+import { ExpenseType } from '../type';
+import { Dispatch, sendExpense } from '../redux/actions';
 
 const INITIAL_STATE = {
   id: 0,
@@ -14,7 +14,6 @@ const INITIAL_STATE = {
 };
 
 function WalletForm() {
-  const currencies = useSelector((state: RootState) => state.wallet.currencies);
   const [formData, setFormData] = useState<ExpenseType>(INITIAL_STATE);
   const dispatch: Dispatch = useDispatch();
 

@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { ExpenseType, RootState } from '../type';
+import { RootState } from '../type';
 
 function Header() {
   const stateEmail = useSelector((state: RootState) => state.user.email);
